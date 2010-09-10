@@ -1,0 +1,48 @@
+= MongoMapper::Plugins::Lockdown
+
+Tiny plugin for MongoMapper to strip unknown fields on assignment
+
+Eg. Usually MongoMapper lets you set attributes which you haven't defined:
+
+    class Post
+      include MongoMapper::Document
+
+      key :title,       String
+      key :contents,    String
+    end
+
+    Post.new(:title => "test", :contents => "foo", :other => "don't want this")
+    => #<Post title: "test", _id: BSON::ObjectId('4c8a7169cf02a3fc24000001'), other: "don't want this", contents: "foo">
+    
+Include Lockdown and instead, this happens:
+
+    Post.new(:title => "test", :contents => "foo", :other => "don't want this")
+    => #<Post title: "test", _id: BSON::ObjectId('4c8a7169cf02a3fc24000001'), contents: "foo">
+    
+Nice and clean.
+
+== Usage
+
+Either load it into all models, or individual models:
+  
+    # add to all models
+    MongoMapper::Document.append_inclusions(MongoMapper::Plugins::Lockdown)
+
+    # add to a specific model
+    plugin MongoMapper::Plugins::Lockdown
+    
+== Note on Patches/Pull Requests
+
+* Fork the project.
+* Make your feature addition or bug fix.
+* Add tests for it. This is important so I don't break it in a future version unintentionally.
+* Commit, do not mess with rakefile, version, or history. (if you want to have your own version, that is fine but bump version in a commit by itself in another branch so I can ignore when I pull)
+* Send me a pull request. Bonus points for topic branches.
+
+== Install
+
+ $ gem install mm-lockdown
+
+== Copyright
+
+See LICENSE for details.
