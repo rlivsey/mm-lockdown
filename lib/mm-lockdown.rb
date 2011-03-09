@@ -3,9 +3,7 @@ require 'mongo_mapper'
 module MongoMapper
   module Plugins
     module Lockdown
-      def self.included(model)
-        model.plugin self
-      end
+      extend ActiveSupport::Concern
 
       module InstanceMethods
         protected
