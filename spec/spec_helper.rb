@@ -2,10 +2,9 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
 require 'rubygems'
-gem 'rspec'
+require 'rspec'
 
 require 'mm-lockdown'
-require 'spec'
 
 MongoMapper.database = 'mm-lockdown-spec'
 
@@ -25,5 +24,5 @@ class Unlocked
   key :body,        String
 end
 
-Spec::Runner.configure do |config|
+RSpec.configure do |config|
 end
