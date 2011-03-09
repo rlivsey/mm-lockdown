@@ -26,7 +26,7 @@ Nice and clean.
 Either load it into all models, or individual models:
   
     # add to all models
-    MongoMapper::Document.append_inclusions(MongoMapper::Plugins::Lockdown)
+    MongoMapper::Document.plugin(MongoMapper::Plugins::Lockdown)
 
     # add to a specific model
     plugin MongoMapper::Plugins::Lockdown
